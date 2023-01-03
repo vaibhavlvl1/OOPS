@@ -4,16 +4,13 @@ class Penguin:
     family = 'Sphenicidae'
 
     # instance attributes
-    def __init__(self,name,age,color):
+    def __init__(self, name, age, color):
         self.name = name
         self.age = age
         self.color = color
 
-
-
 # king = Penguin("king_penguin",4,'white')
 # yellow_eyed = Penguin('yellow-eyed',1,'brown')
-
 
 # print class attributes
 # print('scientific family of {0} is {1}'.format(king.name,king.__class__.family))
@@ -97,7 +94,7 @@ class  Bird:
         print("I am a Bird")
 
     def swim(self):
-        print("i cannot swim")
+        print("Birds cannot swim")
 
     def fly(self):
         print('i can dly')
@@ -111,10 +108,96 @@ class Owl(Bird):
         super().__init__()          # this gets parent attrib in this class
         print('owl is created')
 
+    # override the parens methods
+
+    def whoiam(self):
+        print("iam an owl")
+
+
+    # owls can fly so no need to override fly method
+
+    def swim(self):
+        print("some owls can swim")
+
+    # owls can see in the night
+    # this method is only for child class owl
+
+    def night_vision(self):
+        print("owls have night vision")
 
 
 
-Midnight = Owl()
+
+# Midnight = Owl()
+# #Midnight.swim()
+# #Midnight.whoiam()
+# Midnight.swim()
+# Midnight.night_vision()
 
 
+
+
+# -----------------------ENCAPSULATION----------------------------------#
+
+# it means to hide the atttributes of the class
+# The attributes are only accessible in class and not outside
+# we use __ to hide attributes
+
+
+
+#ex
+
+class Telephone:
+    def __init__(self):
+        # private variable declaration
+        self.__price = 1000
+
+    def sell(self):
+        print(f"The price of phone is {self.__price}")
+
+    # setter
+    def set_price(self,new_price):
+        if new_price>=100:
+            self.__price = new_price
+        else:
+            print("The price cannot be less than 100")
+
+    # getter
+    def get_price(self):
+        print(self.__price)
+
+
+
+
+# the __price cannot be accessed or modified outside of class
+# getter and setter functions are used to modifiy private variables
+
+# phone = Telephone()
+# phone.sell()
+# phone.__price = 5000
+# phone.sell()
+
+# even if we set phone.__price = 5000 the __price wont change
+# instead an instance attibute phone.__price will be created with value 5000
+
+# print(phone.__price)  # it is unrelated of the class variable
+
+# use getter and setter to change private variables
+
+# phone.set_price(8000)
+# phone.sell()
+
+
+
+
+
+
+
+#-------------------------POLYMORPHISM---------------------------------#
+
+# modification of class attributes in child classes to print differnt resulst
+
+# the same function can return differetn resulst based on objects
+
+# basically overriding functions
 

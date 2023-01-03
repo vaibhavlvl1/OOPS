@@ -1,2 +1,3 @@
 if __name__ == '__main__':
-    import _1_oops_basics
+    # import _1_oops_basics
+    import _2_classes_and_objects
