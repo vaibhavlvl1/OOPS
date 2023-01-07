@@ -29,6 +29,17 @@ Klark Kent
 
 # S 1:
 
+class student:
+    def __init__(self,name ,number):
+        self.name = name
+        self.number = number
+
+
+obj1 = student('James Bond','007')
+obj2 = student('Klark Kent','333')
+
+# print(obj1.name)
+# print(obj2.name)
 
 
 
@@ -60,7 +71,23 @@ student.get_courses()  ->  ['Python Hands-On', 'Machine Learning']
 
 # S 2:
 
+class student:
+    def __init__(self,name ,number):
+        self.name = name
+        self.number = number
+        self.courses = []
 
+    def get_courses(self):
+        return self.courses
+
+    def enroll(self,course_name):
+        self.courses.append(course_name)
+
+# obj1 = student('John Doe','1111')
+# obj1.enroll('Machine_learning')
+# obj1.enroll('Python Handson')
+#
+# print(obj1.get_courses())
 
 
 # --------------------------------------------------------------------------------------#
@@ -94,6 +121,24 @@ print(dist) ->  5.0
 """
 
 # S 3:
+class Point:
+    """it represents a point in (x,y) coordinates."""
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+
+    def distance(self,obj1):
+        import math
+        x_diff = self.x - obj1.x
+        y_diff = self.y - obj1.y
+        res = (math.sqrt(x_diff**2+y_diff**2))
+
+        return '%.2f'%res
+
+# p1=Point(1,7)
+# p2 = Point(4,3)
+# print(p1.distance(p2))
+# print(Point.__doc__)
 
 
 
@@ -155,8 +200,29 @@ area: 24.0
 
 
 # S 4:
+class Rectangle:
+    def __init__(self,c1,c2,c3,c4):
+        self.c1 = c1
+        self.c2 = c2
+        self.c3 = c3
+        self.c4 = c4
 
+    def calculate_width(self):
+        return '%.1f'%(self.c2.x - self.c1.x)
+    def calculate_length(self):
+        return '%.1f'%(self.c1.y -self.c3.y)
 
+    def area(self):
+        return '%.1f'%((self.c2.x-self.c1.x)*(self.c1.y - self.c3.y))
+
+# p_1 = Point(5, 8)
+# p_2 = Point(9, 8)
+# p_3 = Point(5, 2)
+# p_4 = Point(9, 2)
+
+# rec = Rectangle(p_1,p_2,p_3,p_4)
+
+# print('width :',rec.calculate_width(),'\nlength :',rec.calculate_length(),"\nArea :",rec.area())
 
 
 # --------------------------------------------------------------------------------------#
@@ -191,6 +257,25 @@ Balance: 300
 
 
 # S 5:
+
+class BankAccount:
+    def __init__(self,balance=0):
+        self.balance = balance
+
+    def deposit(self,amount):
+        self.balance +=amount
+        return self.balance
+    def withdraw(self,amount):
+        self.balance-=amount
+        return self.balance
+    def display_balance(self):
+        print('Balance :',self.balance)
+# account = BankAccount()
+# account.display_balance()
+# account.deposit(500)
+# account.display_balance()
+# account.withdraw(200)
+# account.display_balance()
 
 
 
@@ -238,8 +323,30 @@ Balance: 300
 
 
 # S 6:
+class MinimumBankAccount(BankAccount):
+    def __init__(self,minAccBal=100):
+        super().__init__()
+        self.minimumBalance = minAccBal
+
+    def __str__(self):
+        return "This is MinimumBankAccount class"
+
+    def withdraw(self,amount):
+        if (self.balance - amount) <=self.minimumBalance:
+            print("Sorry You cannot withdraw")
+        else:
+            BankAccount.withdraw(self,amount)
 
 
+
+# min_account = MinimumBankAccount(100)
+# print(min_account)
+# min_account.deposit(500)
+# min_account.display_balance()
+# min_account.withdraw(200)
+# min_account.display_balance()
+# min_account.withdraw(300)
+# min_account.display_balance()
 
 
 # --------------------------------------------------------------------------------------#
@@ -305,8 +412,43 @@ What Goes On
 
 
 # S 8:
+class Song:
+    def __init__(self,name,artist,album,song_number):
+        self.name = name
+        self.artist = artist
+        self.album = album
+        self.song_number = song_number
+
+    def __str__(self):
+        return self.name
 
 
+class Album:
+    def __init__(self,name,artist,year):
+        self.name = name
+        self.artist = artist
+        self.year = year
+        self.songs = []
+
+    def add_song(self,smh):
+        song_number =len(self.songs)
+
+        #song object
+        song = Song(smh,self.artist,self,song_number)
+
+        # append this obj into songs ist
+        self.songs.append(song)
+
+    def __str__(self):
+        return self.name
+
+
+
+album = Album('Yesterday and Today', 'The Beatles', 1966)
+album.add_song('Yesterday')
+album.add_song('Act Naturally')
+album.add_song('What Goes On')
+[print(i) for i in album.songs]
 
 
 # --------------------------------------------------------------------------------------#
@@ -346,8 +488,24 @@ For You Blue
 
 
 # S 9:
+class Artist:
+    def __init__(self,name):
+        self.name = name
+        self.albums = []
 
+    def add_album(self,album):
+        if not album in self.albums:
+            self.albums.append(album)
+beatles = Artist('The Beatles')
+album_1 = Album('Yesterday and Today', 'The Beatles', 1966)
+album_1.add_song('Yesterday')
+album_1.add_song('Act Naturally')
+beatles.add_album(album_1)
 
+album_2 = Album('Let It Be', 'The Beatles', 1970)
+album_2.add_song('Let It Be')
+album_2.add_song('For You Blue')
+beatles.add_album(album_2)
 
 
 # --------------------------------------------------------------------------------------#
